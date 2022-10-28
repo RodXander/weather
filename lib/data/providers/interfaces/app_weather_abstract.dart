@@ -12,4 +12,6 @@ abstract class AppWeatherAbstract {
     Coordinate coordinates,
     String units,
   );
+
+  String getWeatherIcon(String id);
 }

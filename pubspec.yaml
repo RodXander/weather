@@ -47,6 +47,8 @@ dependencies:
   bloc_concurrency: ^0.2.0
   intl: ^0.17.0
   chopper: ^5.1.0
+  collection: ^1.16.0
+  boxy: ^2.0.6+1
 
 dev_dependencies:
   flutter_test:

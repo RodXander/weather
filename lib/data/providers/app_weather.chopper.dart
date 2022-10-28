@@ -22,7 +22,8 @@ class _$AppWeather extends AppWeather {
     double lon,
     String units,
   ) {
-    final String $url = '/weather?appid=d37af98b5012e1570b59393e3943afd8';
+    final String $url =
+        '/data/2.5/weather?appid=d37af98b5012e1570b59393e3943afd8';
     final Map<String, dynamic> $params = <String, dynamic>{
       'lat': lat,
       'lon': lon,
@@ -43,7 +44,8 @@ class _$AppWeather extends AppWeather {
     double lon,
     String units,
   ) {
-    final String $url = '/forecast?appid=d37af98b5012e1570b59393e3943afd8';
+    final String $url =
+        '/data/2.5/forecast?appid=d37af98b5012e1570b59393e3943afd8';
     final Map<String, dynamic> $params = <String, dynamic>{
       'lat': lat,
       'lon': lon,

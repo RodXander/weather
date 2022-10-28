@@ -24,7 +24,7 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
                   .body ??
               ""));
 
-  @Get(path: "/weather?appid=$appId")
+  @Get(path: "/data/2.5/weather?appid=$appId")
   Future<Response<String>> _getCurrentWeather(
     @Query() double lat,
     @Query() double lon,
@@ -41,10 +41,14 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
                   .body ??
               ""));
 
-  @Get(path: "/forecast?appid=$appId")
+  @Get(path: "/data/2.5/forecast?appid=$appId")
   Future<Response<String>> _getForecastWeather(
     @Query() double lat,
     @Query() double lon,
     @Query() String units,
   );
+
+  @override
+  String getWeatherIcon(String id) =>
+      "https://openweathermap.org/img/wn/$id.png";
 }

@@ -173,12 +173,13 @@ class __$$_MainStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MainState implements _MainState {
-  const _$_MainState(
+class _$_MainState extends _MainState {
+  _$_MainState(
       {required this.state,
       required this.location,
       this.weather,
-      this.forecast});
+      this.forecast})
+      : super._();
 
   @override
   final MainStateEnum state;
@@ -218,12 +219,13 @@ class _$_MainState implements _MainState {
       __$$_MainStateCopyWithImpl<_$_MainState>(this, _$identity);
 }
 
-abstract class _MainState implements MainState {
-  const factory _MainState(
+abstract class _MainState extends MainState {
+  factory _MainState(
       {required final MainStateEnum state,
       required final Location location,
       final Weather? weather,
       final ForecastWeather? forecast}) = _$_MainState;
+  _MainState._() : super._();
 
   @override
   MainStateEnum get state;

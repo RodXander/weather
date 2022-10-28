@@ -1,6 +1,14 @@
 {
   "weather": "Weather",
-  "@shopviser": {
+  "@weather": {
     "description": "The app's name, created by Osvaldo Saez."
-  }
+  },
+  "now": "now",
+  "@now": {},
+
+  "fiveDayForecast": "5-day forecast",
+  "@fiveDayForecast": {},
+
+  "currentWeather": "Current weather",
+  "@currentWeather": {}
 }

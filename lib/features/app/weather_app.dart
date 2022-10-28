@@ -23,7 +23,7 @@ class WeatherApp extends StatelessWidget {
       },
       theme: ThemeData(
         colorSchemeSeed: Colors.blue,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         useMaterial3: true,
       ),
     );

@@ -21,7 +21,7 @@ class AppRepository {
   static Future<AppRepository> getInstance() async {
     _appPreferences ??= GetIt.I();
     _chopperClient ??= ChopperClient(
-      baseUrl: "https://api.openweathermap.org/data/2.5",
+      baseUrl: "https://api.openweathermap.org",
       services: [
         AppWeather.getInstance(),
       ],
@@ -40,7 +40,10 @@ class AppRepository {
     );
   }
 
-  Future<Weather?> loadCurrentWeatherData(Coordinate coordinate) async {
+  String getWeatherIcon(String id) =>
+      _chopperClient!.getService<AppWeather>().getWeatherIcon(id);
+
+  Future<Weather?> getCurrentWeather(Coordinate coordinate) async {
     try {
       return await _chopperClient!
           .getService<AppWeather>()
@@ -50,8 +53,7 @@ class AppRepository {
     }
   }
 
-  Future<ForecastWeather?> loadForecastWeatherData(
-      Coordinate coordinate) async {
+  Future<ForecastWeather?> getForecastWeather(Coordinate coordinate) async {
     try {
       var fullForecast = await _chopperClient!
           .getService<AppWeather>()
