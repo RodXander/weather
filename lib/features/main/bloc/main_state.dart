@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weather/data/repositories/app_repository.dart';
@@ -19,8 +18,8 @@ class MainState with _$MainState {
 
   MainState._();
 
-  String get weatherIconUrl => GetIt.I<AppRepository>()
-      .getWeatherIcon(weather?.weather.firstOrNull?.icon ?? "");
+  String weatherIconUrl(String id) =>
+      GetIt.I<AppRepository>().getWeatherIcon(id);
 }
 
 enum MainStateEnum { loading, loaded }

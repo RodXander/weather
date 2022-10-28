@@ -50,5 +50,5 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
 
   @override
   String getWeatherIcon(String id) =>
-      "https://openweathermap.org/img/wn/$id.png";
+      "https://openweathermap.org/img/wn/$id@2x.png";
 }

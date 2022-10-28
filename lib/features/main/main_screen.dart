@@ -1,12 +1,15 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:weather/features/main/bloc/main_bloc.dart';
 import 'package:weather/features/main/bloc/main_event.dart';
 import 'package:weather/features/main/bloc/main_state.dart';
 import 'package:weather/features/main/components/weather_card.dart';
 import 'package:weather/features/main/components/weather_title.dart';
+import 'package:weather/models/weather/weather.dart';
 
 /// Main screen of the app.
 class MainScreen extends StatefulWidget {
@@ -57,7 +60,11 @@ class _MainScreenState extends State<MainScreen> {
                           const SizedBox(height: 16),
                           WeatherCard(
                             weather: state.weather!,
-                            iconUrl: state.weatherIconUrl,
+                            date:
+                                AppLocalizations.of(context).now.toUpperCase(),
+                            time: DateFormat("hh:mm a").format(DateTime.now()),
+                            iconUrl: state.weatherIconUrl(
+                                state.weather!.weather.firstOrNull?.icon ?? ""),
                             expanded: true,
                           ),
                           const SizedBox(height: 64),
@@ -66,10 +73,12 @@ class _MainScreenState extends State<MainScreen> {
                                   .fiveDayForecast
                                   .toUpperCase()),
                           const SizedBox(height: 16),
-                          for (var weather in state.forecast?.list ?? [])
+                          for (Weather weather in state.forecast?.list ?? [])
                             WeatherCard(
                               weather: weather,
-                              iconUrl: state.weatherIconUrl,
+                              date: DateFormat("MMMM, dd").format(weather.dt!),
+                              iconUrl: state.weatherIconUrl(
+                                  weather.weather.firstOrNull?.icon ?? ""),
                             ),
                         ],
                       ),

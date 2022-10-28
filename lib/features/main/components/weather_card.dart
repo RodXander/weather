@@ -1,20 +1,22 @@
 import 'package:boxy/flex.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:intl/intl.dart';
 import 'package:weather/models/weather/weather.dart';
 
 class WeatherCard extends StatelessWidget {
   const WeatherCard({
     Key? key,
     required this.weather,
+    required this.date,
     this.iconUrl = "",
+    this.time = "",
     this.expanded = false,
   }) : super(key: key);
 
   final Weather weather;
   final String iconUrl;
+  final String date;
+  final String time;
   final bool expanded;
 
   @override
@@ -27,12 +29,12 @@ class WeatherCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  AppLocalizations.of(context).now.toUpperCase(),
+                  date,
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  DateFormat("hh:mm a").format(DateTime.now()),
+                  time,
                   style: Theme.of(context)
                       .textTheme
                       .headline6
