@@ -4,7 +4,9 @@ import 'package:get_it/get_it.dart';
 import 'package:weather/data/providers/app_preferences.dart';
 import 'package:weather/data/providers/app_weather.dart';
 import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart';
+import 'package:weather/models/coordinate/coordinate.dart';
 import 'package:weather/models/forecast_weather/forecast_weather.dart';
+import 'package:weather/models/location/location.dart';
 import 'package:weather/models/weather/weather.dart';
 
 /// Main app's repository, dealing with all information that is app-wide
@@ -27,27 +29,33 @@ class AppRepository {
     return _appRepository;
   }
 
-  Future<Weather?> loadCurrentWeatherData() async {
-    var lat = _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04;
-    var lon = _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07;
+  Location getCurrentLocation() {
+    return Location(
+      name:
+          _appPreferences!.getString(AppPreferences.locationName) ?? "Calgary",
+      coordinates: Coordinate(
+        lat: _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04,
+        lon: _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07,
+      ),
+    );
+  }
 
+  Future<Weather?> loadCurrentWeatherData(Coordinate coordinate) async {
     try {
       return await _chopperClient!
           .getService<AppWeather>()
-          .getCurrentWeather(lat, lon, "metric");
+          .getCurrentWeather(coordinate, "metric");
     } catch (_) {
       return null;
     }
   }
 
-  Future<ForecastWeather?> loadForecastWeatherData() async {
-    var lat = _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04;
-    var lon = _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07;
-
+  Future<ForecastWeather?> loadForecastWeatherData(
+      Coordinate coordinate) async {
     try {
       var fullForecast = await _chopperClient!
           .getService<AppWeather>()
-          .getForecastWeather(lat, lon, "metric");
+          .getForecastWeather(coordinate, "metric");
 
       var currentDate = DateUtils.dateOnly(DateTime.now());
       var forecast = <Weather>[];

@@ -10,6 +10,16 @@ abstract class AppPreferencesAbstract {
   /// Gets whether the specified key exist in the preferences system.
   bool containsKey(String key);
 
+  /// Gets the value of the appropriate `String` given [key].
+  ///
+  /// Returns null if [key] doesn't exists.
+  String? getString(String key);
+
+  /// Sets or updates the value of the appropriate `String` given [key].
+  ///
+  /// Returns a [Future<bool>] of whether or not the operation succeeded.
+  Future<bool> setString(String key, String value);
+
   /// Gets the value of the appropriate `double` given [key].
   ///
   /// Returns null if [key] doesn't exists.

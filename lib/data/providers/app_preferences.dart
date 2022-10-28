@@ -6,6 +6,7 @@ import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart'
 /// It functions as singleton and doesn't allow to create an instance directly since it uses an asynchronous dependency to operate.
 /// Therefore it uses [getInstance] to provide access to the object.
 class AppPreferences implements AppPreferencesAbstract {
+  static const locationName = 'location_name';
   static const lat = 'lat';
   static const lon = 'lon';
 
@@ -47,4 +48,17 @@ class AppPreferences implements AppPreferencesAbstract {
   @override
   Future<bool> setDouble(String key, double value) async =>
       await _sharedPreferences!.setDouble(key, value);
+
+  /// Gets the value of the appropriate `String` given [key].
+  ///
+  /// Returns null if [key] doesn't exists.
+  @override
+  String? getString(String key) => _sharedPreferences!.getString(key);
+
+  /// Sets or updates the value of the appropriate `String` given [key].
+  ///
+  /// Returns a [Future<bool>] of whether or not the operation succeeded.
+  @override
+  Future<bool> setString(String key, String value) async =>
+      await _sharedPreferences!.setString(key, value);
 }
