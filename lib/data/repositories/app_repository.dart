@@ -23,6 +23,12 @@ class AppRepository {
     return _appRepository;
   }
 
+  Future<int> loadWeatherData() async {
+    var s = await _chopperClient!
+        .getService<AppWeather>()
+        .getCurrentWeather(44.34, 10.99);
+    return 4;
+  }
 /*/// Gets the country selected to operate on the app.
   /// It returns null if no country exists.
   Country? get country => _appPreferences!.containsKey(AppPreferences.country)

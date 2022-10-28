@@ -15,4 +15,42 @@ class _$AppWeather extends AppWeather {
 
   @override
   final definitionType = AppWeather;
+
+  @override
+  Future<Response<Weather>> _getCurrentWeather(
+    double lat,
+    double lon,
+  ) {
+    final String $url = '/weather?appid=d37af98b5012e1570b59393e3943afd8';
+    final Map<String, dynamic> $params = <String, dynamic>{
+      'lat': lat,
+      'lon': lon,
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<Weather, Weather>($request);
+  }
+
+  @override
+  Future<Response<ForecastWeather>> _getForecastWeather(
+    double lat,
+    double lon,
+  ) {
+    final String $url = '/forecast?appid=d37af98b5012e1570b59393e3943afd8';
+    final Map<String, dynamic> $params = <String, dynamic>{
+      'lat': lat,
+      'lon': lon,
+    };
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<ForecastWeather, ForecastWeather>($request);
+  }
 }

@@ -7,25 +7,36 @@ part 'app_weather.chopper.dart';
 
 @ChopperApi()
 abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
+  static const appId = "d37af98b5012e1570b59393e3943afd8";
   static AppWeather getInstance() => _$AppWeather();
 
-  @Get(path: "/weather?appid=d37af98b5012e1570b59393e3943afd8")
   @override
   Future<Weather> getCurrentWeather(
-    @Query() int lat,
-    @Query() int long,
+    double lat,
+    double lon,
   ) async {
-    await Future.delayed(Duration.zero);
-    return const Weather();
+    var response = await _getCurrentWeather(lat, lon);
+    return Weather();
   }
 
-  @Get(path: "/forecast?appid=d37af98b5012e1570b59393e3943afd8")
+  @Get(path: "/weather?appid=$appId")
+  Future<Response<Weather>> _getCurrentWeather(
+    @Query() double lat,
+    @Query() double lon,
+  );
+
   @override
   Future<ForecastWeather> getForecastWeather(
-    @Query() int lat,
-    @Query() int long,
+    double lat,
+    double lon,
   ) async {
-    await Future.delayed(Duration.zero);
-    return const ForecastWeather();
+    var response = await _getForecastWeather(lat, lon);
+    return ForecastWeather();
   }
+
+  @Get(path: "/forecast?appid=$appId")
+  Future<Response<ForecastWeather>> _getForecastWeather(
+    @Query() double lat,
+    @Query() double lon,
+  );
 }
