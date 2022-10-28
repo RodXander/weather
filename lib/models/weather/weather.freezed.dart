@@ -16,10 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Weather {
-  int get id => throw _privateConstructorUsedError;
-  String get main => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  String get icon => throw _privateConstructorUsedError;
+  List<WeatherDescription> get weather => throw _privateConstructorUsedError;
+  WeatherStats get main => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +28,9 @@ abstract class $WeatherCopyWith<$Res> {
   factory $WeatherCopyWith(Weather value, $Res Function(Weather) then) =
       _$WeatherCopyWithImpl<$Res, Weather>;
   @useResult
-  $Res call({int id, String main, String description, String icon});
+  $Res call({List<WeatherDescription> weather, WeatherStats main});
+
+  $WeatherStatsCopyWith<$Res> get main;
 }
 
 /// @nodoc
@@ -46,29 +46,27 @@ class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? weather = null,
     Object? main = null,
-    Object? description = null,
-    Object? icon = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      weather: null == weather
+          ? _value.weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<WeatherDescription>,
       main: null == main
           ? _value.main
           : main // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WeatherStats,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WeatherStatsCopyWith<$Res> get main {
+    return $WeatherStatsCopyWith<$Res>(_value.main, (value) {
+      return _then(_value.copyWith(main: value) as $Val);
+    });
   }
 }
 
@@ -79,7 +77,10 @@ abstract class _$$_WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
       __$$_WeatherCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String main, String description, String icon});
+  $Res call({List<WeatherDescription> weather, WeatherStats main});
+
+  @override
+  $WeatherStatsCopyWith<$Res> get main;
 }
 
 /// @nodoc
@@ -92,28 +93,18 @@ class __$$_WeatherCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? weather = null,
     Object? main = null,
-    Object? description = null,
-    Object? icon = null,
   }) {
     return _then(_$_Weather(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      weather: null == weather
+          ? _value._weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<WeatherDescription>,
       main: null == main
           ? _value.main
           : main // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      icon: null == icon
-          ? _value.icon
-          : icon // ignore: cast_nullable_to_non_nullable
-              as String,
+              as WeatherStats,
     ));
   }
 }
@@ -122,24 +113,25 @@ class __$$_WeatherCopyWithImpl<$Res>
 
 class _$_Weather implements _Weather {
   const _$_Weather(
-      {this.id = 0, this.main = "", this.description = "", this.icon = ""});
+      {final List<WeatherDescription> weather = const [],
+      this.main = const WeatherStats()})
+      : _weather = weather;
+
+  final List<WeatherDescription> _weather;
+  @override
+  @JsonKey()
+  List<WeatherDescription> get weather {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weather);
+  }
 
   @override
   @JsonKey()
-  final int id;
-  @override
-  @JsonKey()
-  final String main;
-  @override
-  @JsonKey()
-  final String description;
-  @override
-  @JsonKey()
-  final String icon;
+  final WeatherStats main;
 
   @override
   String toString() {
-    return 'Weather(id: $id, main: $main, description: $description, icon: $icon)';
+    return 'Weather(weather: $weather, main: $main)';
   }
 
   @override
@@ -147,15 +139,13 @@ class _$_Weather implements _Weather {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Weather &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.main, main) || other.main == main) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.icon, icon) || other.icon == icon));
+            const DeepCollectionEquality().equals(other._weather, _weather) &&
+            (identical(other.main, main) || other.main == main));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, main, description, icon);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_weather), main);
 
   @JsonKey(ignore: true)
   @override
@@ -166,19 +156,13 @@ class _$_Weather implements _Weather {
 
 abstract class _Weather implements Weather {
   const factory _Weather(
-      {final int id,
-      final String main,
-      final String description,
-      final String icon}) = _$_Weather;
+      {final List<WeatherDescription> weather,
+      final WeatherStats main}) = _$_Weather;
 
   @override
-  int get id;
+  List<WeatherDescription> get weather;
   @override
-  String get main;
-  @override
-  String get description;
-  @override
-  String get icon;
+  WeatherStats get main;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherCopyWith<_$_Weather> get copyWith =>
