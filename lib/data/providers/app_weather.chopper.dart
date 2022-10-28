@@ -19,12 +19,14 @@ class _$AppWeather extends AppWeather {
   @override
   Future<Response<String>> _getCurrentWeather(
     double lat,
-    double long,
+    double lon,
+    String units,
   ) {
     final String $url = '/weather?appid=d37af98b5012e1570b59393e3943afd8';
     final Map<String, dynamic> $params = <String, dynamic>{
       'lat': lat,
-      'long': long,
+      'lon': lon,
+      'units': units,
     };
     final Request $request = Request(
       'GET',
@@ -39,11 +41,13 @@ class _$AppWeather extends AppWeather {
   Future<Response<String>> _getForecastWeather(
     double lat,
     double lon,
+    String units,
   ) {
     final String $url = '/forecast?appid=d37af98b5012e1570b59393e3943afd8';
     final Map<String, dynamic> $params = <String, dynamic>{
       'lat': lat,
       'lon': lon,
+      'units': units,
     };
     final Request $request = Request(
       'GET',

@@ -26,7 +26,10 @@ class AppRepository {
   Future<int> loadWeatherData() async {
     var s = await _chopperClient!
         .getService<AppWeather>()
-        .getCurrentWeather(44.34, 10.99);
+        .getCurrentWeather(44.34, 10.99, "metric");
+    var d = await _chopperClient!
+        .getService<AppWeather>()
+        .getForecastWeather(44.34, 10.99, "metric");
     return 4;
   }
 /*/// Gets the country selected to operate on the app.
