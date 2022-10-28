@@ -19,32 +19,40 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function(bool ascending) changedForecastOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
+    TResult? Function(bool ascending)? changedForecastOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function(bool ascending)? changedForecastOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MainEventLoading value) loading,
+    required TResult Function(MainEventChangedForecastOrder value)
+        changedForecastOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MainEventLoading value)? loading,
+    TResult? Function(MainEventChangedForecastOrder value)?
+        changedForecastOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MainEventLoading value)? loading,
+    TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -106,6 +114,7 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
+    required TResult Function(bool ascending) changedForecastOrder,
   }) {
     return loading();
   }
@@ -114,6 +123,7 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
+    TResult? Function(bool ascending)? changedForecastOrder,
   }) {
     return loading?.call();
   }
@@ -122,6 +132,7 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
+    TResult Function(bool ascending)? changedForecastOrder,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -134,6 +145,8 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(MainEventLoading value) loading,
+    required TResult Function(MainEventChangedForecastOrder value)
+        changedForecastOrder,
   }) {
     return loading(this);
   }
@@ -142,6 +155,8 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(MainEventLoading value)? loading,
+    TResult? Function(MainEventChangedForecastOrder value)?
+        changedForecastOrder,
   }) {
     return loading?.call(this);
   }
@@ -150,6 +165,7 @@ class _$MainEventLoading implements MainEventLoading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MainEventLoading value)? loading,
+    TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -161,4 +177,144 @@ class _$MainEventLoading implements MainEventLoading {
 
 abstract class MainEventLoading implements MainEvent {
   const factory MainEventLoading() = _$MainEventLoading;
+}
+
+/// @nodoc
+abstract class _$$MainEventChangedForecastOrderCopyWith<$Res> {
+  factory _$$MainEventChangedForecastOrderCopyWith(
+          _$MainEventChangedForecastOrder value,
+          $Res Function(_$MainEventChangedForecastOrder) then) =
+      __$$MainEventChangedForecastOrderCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool ascending});
+}
+
+/// @nodoc
+class __$$MainEventChangedForecastOrderCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$MainEventChangedForecastOrder>
+    implements _$$MainEventChangedForecastOrderCopyWith<$Res> {
+  __$$MainEventChangedForecastOrderCopyWithImpl(
+      _$MainEventChangedForecastOrder _value,
+      $Res Function(_$MainEventChangedForecastOrder) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? ascending = null,
+  }) {
+    return _then(_$MainEventChangedForecastOrder(
+      ascending: null == ascending
+          ? _value.ascending
+          : ascending // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
+  const _$MainEventChangedForecastOrder({required this.ascending});
+
+  @override
+  final bool ascending;
+
+  @override
+  String toString() {
+    return 'MainEvent.changedForecastOrder(ascending: $ascending)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainEventChangedForecastOrder &&
+            (identical(other.ascending, ascending) ||
+                other.ascending == ascending));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, ascending);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MainEventChangedForecastOrderCopyWith<_$MainEventChangedForecastOrder>
+      get copyWith => __$$MainEventChangedForecastOrderCopyWithImpl<
+          _$MainEventChangedForecastOrder>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(bool ascending) changedForecastOrder,
+  }) {
+    return changedForecastOrder(ascending);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(bool ascending)? changedForecastOrder,
+  }) {
+    return changedForecastOrder?.call(ascending);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(bool ascending)? changedForecastOrder,
+    required TResult orElse(),
+  }) {
+    if (changedForecastOrder != null) {
+      return changedForecastOrder(ascending);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainEventLoading value) loading,
+    required TResult Function(MainEventChangedForecastOrder value)
+        changedForecastOrder,
+  }) {
+    return changedForecastOrder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainEventLoading value)? loading,
+    TResult? Function(MainEventChangedForecastOrder value)?
+        changedForecastOrder,
+  }) {
+    return changedForecastOrder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainEventLoading value)? loading,
+    TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
+    required TResult orElse(),
+  }) {
+    if (changedForecastOrder != null) {
+      return changedForecastOrder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainEventChangedForecastOrder implements MainEvent {
+  const factory MainEventChangedForecastOrder({required final bool ascending}) =
+      _$MainEventChangedForecastOrder;
+
+  bool get ascending;
+  @JsonKey(ignore: true)
+  _$$MainEventChangedForecastOrderCopyWith<_$MainEventChangedForecastOrder>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -10,5 +10,11 @@
   "@fiveDayForecast": {},
 
   "currentWeather": "Current weather",
-  "@currentWeather": {}
+  "@currentWeather": {},
+
+  "asc": "asc",
+  "@asc": {},
+
+  "des": "des",
+  "@des": {}
 }

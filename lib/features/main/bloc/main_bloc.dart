@@ -11,6 +11,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
           location: GetIt.I<AppRepository>().getCurrentLocation(),
         )) {
     on<MainEventLoading>((event, emit) => _onMainEventLoading(emit));
+    on<MainEventChangedForecastOrder>((event, emit) =>
+        _onMainEventChangedForecastOrder(emit, event.ascending));
   }
 
   void _onMainEventLoading(Emitter emit) async {
@@ -23,6 +25,12 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       state: MainStateEnum.loaded,
       weather: weather,
       forecast: forecast,
+    ));
+  }
+
+  void _onMainEventChangedForecastOrder(Emitter emit, bool ascending) async {
+    emit(state.copyWith(
+      ascForecast: ascending,
     ));
   }
 }

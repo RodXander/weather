@@ -5,4 +5,6 @@ part 'main_event.freezed.dart';
 @freezed
 class MainEvent with _$MainEvent {
   const factory MainEvent.loading() = MainEventLoading;
+  const factory MainEvent.changedForecastOrder({required bool ascending}) =
+      MainEventChangedForecastOrder;
 }

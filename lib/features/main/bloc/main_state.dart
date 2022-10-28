@@ -12,6 +12,7 @@ class MainState with _$MainState {
   factory MainState({
     required MainStateEnum state,
     required Location location,
+    @Default(true) bool ascForecast,
     Weather? weather,
     ForecastWeather? forecast,
   }) = _MainState;

@@ -68,18 +68,73 @@ class _MainScreenState extends State<MainScreen> {
                             expanded: true,
                           ),
                           const SizedBox(height: 64),
-                          WeatherTitle(
-                              title: AppLocalizations.of(context)
-                                  .fiveDayForecast
-                                  .toUpperCase()),
-                          const SizedBox(height: 16),
-                          for (Weather weather in state.forecast?.list ?? [])
-                            WeatherCard(
-                              weather: weather,
-                              date: DateFormat("MMMM, dd").format(weather.dt!),
-                              iconUrl: state.weatherIconUrl(
-                                  weather.weather.firstOrNull?.icon ?? ""),
-                            ),
+                          BlocBuilder<MainBloc, MainState>(
+                            bloc: mainBloc,
+                            buildWhen: (previous, current) =>
+                                previous.ascForecast != current.ascForecast,
+                            builder: (_, state) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      WeatherTitle(
+                                          title: AppLocalizations.of(context)
+                                              .fiveDayForecast
+                                              .toUpperCase()),
+                                      const Spacer(),
+                                      TextButton(
+                                          onPressed: () => mainBloc.add(
+                                              const MainEventChangedForecastOrder(
+                                                  ascending: true)),
+                                          child: Text(
+                                            AppLocalizations.of(context)
+                                                .asc
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4
+                                                ?.copyWith(
+                                                  fontWeight: !state.ascForecast
+                                                      ? FontWeight.w100
+                                                      : null,
+                                                ),
+                                          )),
+                                      TextButton(
+                                          onPressed: () => mainBloc.add(
+                                              const MainEventChangedForecastOrder(
+                                                  ascending: false)),
+                                          child: Text(
+                                            AppLocalizations.of(context)
+                                                .des
+                                                .toUpperCase(),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline4
+                                                ?.copyWith(
+                                                  fontWeight: state.ascForecast
+                                                      ? FontWeight.w100
+                                                      : null,
+                                                ),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  for (Weather weather in (state.ascForecast
+                                          ? state.forecast?.list
+                                          : state.forecast?.list.reversed) ??
+                                      [])
+                                    WeatherCard(
+                                      weather: weather,
+                                      date: DateFormat("MMMM, dd")
+                                          .format(weather.dt!),
+                                      iconUrl: state.weatherIconUrl(
+                                          weather.weather.firstOrNull?.icon ??
+                                              ""),
+                                    ),
+                                ],
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),

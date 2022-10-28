@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MainState {
   MainStateEnum get state => throw _privateConstructorUsedError;
   Location get location => throw _privateConstructorUsedError;
+  bool get ascForecast => throw _privateConstructorUsedError;
   Weather? get weather => throw _privateConstructorUsedError;
   ForecastWeather? get forecast => throw _privateConstructorUsedError;
 
@@ -34,6 +35,7 @@ abstract class $MainStateCopyWith<$Res> {
   $Res call(
       {MainStateEnum state,
       Location location,
+      bool ascForecast,
       Weather? weather,
       ForecastWeather? forecast});
 
@@ -57,6 +59,7 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
   $Res call({
     Object? state = null,
     Object? location = null,
+    Object? ascForecast = null,
     Object? weather = freezed,
     Object? forecast = freezed,
   }) {
@@ -69,6 +72,10 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location,
+      ascForecast: null == ascForecast
+          ? _value.ascForecast
+          : ascForecast // ignore: cast_nullable_to_non_nullable
+              as bool,
       weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
@@ -123,6 +130,7 @@ abstract class _$$_MainStateCopyWith<$Res> implements $MainStateCopyWith<$Res> {
   $Res call(
       {MainStateEnum state,
       Location location,
+      bool ascForecast,
       Weather? weather,
       ForecastWeather? forecast});
 
@@ -147,6 +155,7 @@ class __$$_MainStateCopyWithImpl<$Res>
   $Res call({
     Object? state = null,
     Object? location = null,
+    Object? ascForecast = null,
     Object? weather = freezed,
     Object? forecast = freezed,
   }) {
@@ -159,6 +168,10 @@ class __$$_MainStateCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as Location,
+      ascForecast: null == ascForecast
+          ? _value.ascForecast
+          : ascForecast // ignore: cast_nullable_to_non_nullable
+              as bool,
       weather: freezed == weather
           ? _value.weather
           : weather // ignore: cast_nullable_to_non_nullable
@@ -177,6 +190,7 @@ class _$_MainState extends _MainState {
   _$_MainState(
       {required this.state,
       required this.location,
+      this.ascForecast = true,
       this.weather,
       this.forecast})
       : super._();
@@ -186,13 +200,16 @@ class _$_MainState extends _MainState {
   @override
   final Location location;
   @override
+  @JsonKey()
+  final bool ascForecast;
+  @override
   final Weather? weather;
   @override
   final ForecastWeather? forecast;
 
   @override
   String toString() {
-    return 'MainState(state: $state, location: $location, weather: $weather, forecast: $forecast)';
+    return 'MainState(state: $state, location: $location, ascForecast: $ascForecast, weather: $weather, forecast: $forecast)';
   }
 
   @override
@@ -203,6 +220,8 @@ class _$_MainState extends _MainState {
             (identical(other.state, state) || other.state == state) &&
             (identical(other.location, location) ||
                 other.location == location) &&
+            (identical(other.ascForecast, ascForecast) ||
+                other.ascForecast == ascForecast) &&
             (identical(other.weather, weather) || other.weather == weather) &&
             (identical(other.forecast, forecast) ||
                 other.forecast == forecast));
@@ -210,7 +229,7 @@ class _$_MainState extends _MainState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, state, location, weather, forecast);
+      Object.hash(runtimeType, state, location, ascForecast, weather, forecast);
 
   @JsonKey(ignore: true)
   @override
@@ -223,6 +242,7 @@ abstract class _MainState extends MainState {
   factory _MainState(
       {required final MainStateEnum state,
       required final Location location,
+      final bool ascForecast,
       final Weather? weather,
       final ForecastWeather? forecast}) = _$_MainState;
   _MainState._() : super._();
@@ -231,6 +251,8 @@ abstract class _MainState extends MainState {
   MainStateEnum get state;
   @override
   Location get location;
+  @override
+  bool get ascForecast;
   @override
   Weather? get weather;
   @override
