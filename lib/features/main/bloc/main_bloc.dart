@@ -10,6 +10,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   }
 
   void _onMainEventLoading(Emitter emit) async {
-    GetIt.I<AppRepository>().loadWeatherData();
+    GetIt.I<AppRepository>().loadCurrentWeatherData();
+    GetIt.I<AppRepository>().loadForecastWeatherData();
   }
 }

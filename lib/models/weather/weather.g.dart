@@ -15,10 +15,12 @@ _$_Weather _$$_WeatherFromJson(Map<String, dynamic> json) => _$_Weather(
       main: json['main'] == null
           ? const WeatherStats()
           : WeatherStats.fromJson(json['main'] as Map<String, dynamic>),
+      dt: WeatherConverter.fromInt(json['dt'] as int),
     );
 
 Map<String, dynamic> _$$_WeatherToJson(_$_Weather instance) =>
     <String, dynamic>{
       'weather': instance.weather,
       'main': instance.main,
+      'dt': WeatherConverter.toDateTime(instance.dt),
     };

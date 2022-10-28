@@ -1,8 +1,11 @@
 import 'package:chopper/chopper.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weather/data/providers/app_preferences.dart';
 import 'package:weather/data/providers/app_weather.dart';
 import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart';
+import 'package:weather/models/forecast_weather/forecast_weather.dart';
+import 'package:weather/models/weather/weather.dart';
 
 /// Main app's repository, dealing with all information that is app-wide
 /// and that it doesn't belong to any specific domain handled by another repository.
@@ -24,28 +27,42 @@ class AppRepository {
     return _appRepository;
   }
 
-  Future<int> loadWeatherData() async {
+  Future<Weather?> loadCurrentWeatherData() async {
     var lat = _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04;
     var lon = _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07;
 
-    var s = await _chopperClient!
-        .getService<AppWeather>()
-        .getCurrentWeather(lat, lon, "metric");
-    var d = await _chopperClient!
-        .getService<AppWeather>()
-        .getForecastWeather(lat, lon, "metric");
-    return 4;
+    try {
+      return await _chopperClient!
+          .getService<AppWeather>()
+          .getCurrentWeather(lat, lon, "metric");
+    } catch (_) {
+      return null;
+    }
   }
-/*/// Gets the country selected to operate on the app.
-  /// It returns null if no country exists.
-  Country? get country => _appPreferences!.containsKey(AppPreferences.country)
-      ? Country(_appPreferences!.getString(AppPreferences.country)!)
-      : null;
 
-  /// Sets the country selected to operate on the app.
-  /// If null it clears whatever has been previously stored.
-  /// Internally, it is an asynchronous operation that may fail silently.
-  set country(Country? country) => country == null
-      ? _appPreferences!.removeKey(AppPreferences.country)
-      : _appPreferences!.setString(AppPreferences.country, country.countryCode);*/
+  Future<ForecastWeather?> loadForecastWeatherData() async {
+    var lat = _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04;
+    var lon = _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07;
+
+    try {
+      var fullForecast = await _chopperClient!
+          .getService<AppWeather>()
+          .getForecastWeather(lat, lon, "metric");
+
+      var currentDate = DateUtils.dateOnly(DateTime.now());
+      var forecast = <Weather>[];
+      for (var weather in fullForecast.list) {
+        var weatherDate = DateUtils.dateOnly(
+            weather.dt ?? DateTime.fromMillisecondsSinceEpoch(0));
+
+        if (currentDate.isBefore(weatherDate)) {
+          forecast.add(weather);
+          currentDate = weatherDate;
+        }
+      }
+      return ForecastWeather(list: forecast);
+    } catch (_) {
+      return null;
+    }
+  }
 }

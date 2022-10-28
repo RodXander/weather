@@ -22,6 +22,9 @@ Weather _$WeatherFromJson(Map<String, dynamic> json) {
 mixin _$Weather {
   List<WeatherDescription> get weather => throw _privateConstructorUsedError;
   WeatherStats get main => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+  DateTime? get dt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +36,11 @@ abstract class $WeatherCopyWith<$Res> {
   factory $WeatherCopyWith(Weather value, $Res Function(Weather) then) =
       _$WeatherCopyWithImpl<$Res, Weather>;
   @useResult
-  $Res call({List<WeatherDescription> weather, WeatherStats main});
+  $Res call(
+      {List<WeatherDescription> weather,
+      WeatherStats main,
+      @JsonKey(fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+          DateTime? dt});
 
   $WeatherStatsCopyWith<$Res> get main;
 }
@@ -53,6 +60,7 @@ class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
   $Res call({
     Object? weather = null,
     Object? main = null,
+    Object? dt = freezed,
   }) {
     return _then(_value.copyWith(
       weather: null == weather
@@ -63,6 +71,10 @@ class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
           ? _value.main
           : main // ignore: cast_nullable_to_non_nullable
               as WeatherStats,
+      dt: freezed == dt
+          ? _value.dt
+          : dt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -82,7 +94,11 @@ abstract class _$$_WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
       __$$_WeatherCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<WeatherDescription> weather, WeatherStats main});
+  $Res call(
+      {List<WeatherDescription> weather,
+      WeatherStats main,
+      @JsonKey(fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+          DateTime? dt});
 
   @override
   $WeatherStatsCopyWith<$Res> get main;
@@ -100,6 +116,7 @@ class __$$_WeatherCopyWithImpl<$Res>
   $Res call({
     Object? weather = null,
     Object? main = null,
+    Object? dt = freezed,
   }) {
     return _then(_$_Weather(
       weather: null == weather
@@ -110,6 +127,10 @@ class __$$_WeatherCopyWithImpl<$Res>
           ? _value.main
           : main // ignore: cast_nullable_to_non_nullable
               as WeatherStats,
+      dt: freezed == dt
+          ? _value.dt
+          : dt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -119,7 +140,9 @@ class __$$_WeatherCopyWithImpl<$Res>
 class _$_Weather implements _Weather {
   const _$_Weather(
       {final List<WeatherDescription> weather = const [],
-      this.main = const WeatherStats()})
+      this.main = const WeatherStats(),
+      @JsonKey(fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+          this.dt})
       : _weather = weather;
 
   factory _$_Weather.fromJson(Map<String, dynamic> json) =>
@@ -136,10 +159,14 @@ class _$_Weather implements _Weather {
   @override
   @JsonKey()
   final WeatherStats main;
+  @override
+  @JsonKey(
+      fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+  final DateTime? dt;
 
   @override
   String toString() {
-    return 'Weather(weather: $weather, main: $main)';
+    return 'Weather(weather: $weather, main: $main, dt: $dt)';
   }
 
   @override
@@ -148,13 +175,14 @@ class _$_Weather implements _Weather {
         (other.runtimeType == runtimeType &&
             other is _$_Weather &&
             const DeepCollectionEquality().equals(other._weather, _weather) &&
-            (identical(other.main, main) || other.main == main));
+            (identical(other.main, main) || other.main == main) &&
+            (identical(other.dt, dt) || other.dt == dt));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_weather), main);
+      runtimeType, const DeepCollectionEquality().hash(_weather), main, dt);
 
   @JsonKey(ignore: true)
   @override
@@ -173,7 +201,9 @@ class _$_Weather implements _Weather {
 abstract class _Weather implements Weather {
   const factory _Weather(
       {final List<WeatherDescription> weather,
-      final WeatherStats main}) = _$_Weather;
+      final WeatherStats main,
+      @JsonKey(fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+          final DateTime? dt}) = _$_Weather;
 
   factory _Weather.fromJson(Map<String, dynamic> json) = _$_Weather.fromJson;
 
@@ -181,6 +211,10 @@ abstract class _Weather implements Weather {
   List<WeatherDescription> get weather;
   @override
   WeatherStats get main;
+  @override
+  @JsonKey(
+      fromJson: WeatherConverter.fromInt, toJson: WeatherConverter.toDateTime)
+  DateTime? get dt;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherCopyWith<_$_Weather> get copyWith =>
