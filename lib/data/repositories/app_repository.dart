@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:get_it/get_it.dart';
+import 'package:weather/data/providers/app_preferences.dart';
 import 'package:weather/data/providers/app_weather.dart';
 import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart';
 
@@ -24,12 +25,15 @@ class AppRepository {
   }
 
   Future<int> loadWeatherData() async {
+    var lat = _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04;
+    var lon = _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07;
+
     var s = await _chopperClient!
         .getService<AppWeather>()
-        .getCurrentWeather(44.34, 10.99, "metric");
+        .getCurrentWeather(lat, lon, "metric");
     var d = await _chopperClient!
         .getService<AppWeather>()
-        .getForecastWeather(44.34, 10.99, "metric");
+        .getForecastWeather(lat, lon, "metric");
     return 4;
   }
 /*/// Gets the country selected to operate on the app.

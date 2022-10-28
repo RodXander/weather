@@ -6,7 +6,8 @@ import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart'
 /// It functions as singleton and doesn't allow to create an instance directly since it uses an asynchronous dependency to operate.
 /// Therefore it uses [getInstance] to provide access to the object.
 class AppPreferences implements AppPreferencesAbstract {
-  static const location = 'location';
+  static const lat = 'lat';
+  static const lon = 'lon';
 
   static final _preferences = AppPreferences._internal();
   static SharedPreferences? _sharedPreferences;
@@ -34,42 +35,16 @@ class AppPreferences implements AppPreferencesAbstract {
   @override
   bool containsKey(String key) => _sharedPreferences!.containsKey(key);
 
-  /// Gets the value of the appropriate `bool` given [key].
+  /// Gets the value of the appropriate `double` given [key].
   ///
   /// Returns null if [key] doesn't exists.
   @override
-  bool? getBool(String key) => _sharedPreferences!.getBool(key);
+  double? getDouble(String key) => _sharedPreferences!.getDouble(key);
 
-  /// Gets the value of the appropriate `int` given [key].
-  ///
-  /// Returns null if [key] doesn't exists.
-  @override
-  int? getInt(String key) => _sharedPreferences!.getInt(key);
-
-  /// Gets the value of the appropriate `String` given [key].
-  ///
-  /// Returns null if [key] doesn't exists.
-  @override
-  String? getString(String key) => _sharedPreferences!.getString(key);
-
-  /// Sets or updates the value of the appropriate `bool` given [key].
+  /// Sets or updates the value of the appropriate `double` given [key].
   ///
   /// Returns a [Future<bool>] of whether or not the operation succeeded.
   @override
-  Future<bool> setBool(String key, bool value) async =>
-      await _sharedPreferences!.setBool(key, value);
-
-  /// Sets or updates the value of the appropriate `int` given [key].
-  ///
-  /// Returns a [Future<bool>] of whether or not the operation succeeded.
-  @override
-  Future<bool> setInt(String key, int value) async =>
-      await _sharedPreferences!.setInt(key, value);
-
-  /// Sets or updates the value of the appropriate `String` given [key].
-  ///
-  /// Returns a [Future<bool>] of whether or not the operation succeeded.
-  @override
-  Future<bool> setString(String key, String value) async =>
-      await _sharedPreferences!.setString(key, value);
+  Future<bool> setDouble(String key, double value) async =>
+      await _sharedPreferences!.setDouble(key, value);
 }
