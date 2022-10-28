@@ -1,4 +1,6 @@
+import 'package:chopper/chopper.dart';
 import 'package:get_it/get_it.dart';
+import 'package:weather/data/providers/app_weather.dart';
 import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart';
 
 /// Main app's repository, dealing with all information that is app-wide
@@ -6,15 +8,22 @@ import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart'
 class AppRepository {
   static final AppRepository _appRepository = AppRepository._internal();
   static AppPreferencesAbstract? _appPreferences;
+  static ChopperClient? _chopperClient;
 
   AppRepository._internal();
 
   static Future<AppRepository> getInstance() async {
     _appPreferences ??= GetIt.I();
+    _chopperClient ??= ChopperClient(
+      baseUrl: "https://api.openweathermap.org/data/2.5",
+      services: [
+        AppWeather.getInstance(),
+      ],
+    );
     return _appRepository;
   }
 
-  /*/// Gets the country selected to operate on the app.
+/*/// Gets the country selected to operate on the app.
   /// It returns null if no country exists.
   Country? get country => _appPreferences!.containsKey(AppPreferences.country)
       ? Country(_appPreferences!.getString(AppPreferences.country)!)

@@ -18,6 +18,9 @@ class WeatherApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       initialRoute: MainScreen.routeName,
+      routes: {
+        MainScreen.routeName: (_) => const MainScreen(),
+      },
       theme: ThemeData(
         colorSchemeSeed: Colors.blue,
         brightness: Brightness.light,

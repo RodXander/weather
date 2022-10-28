@@ -7,7 +7,7 @@ part 'app_weather.chopper.dart';
 
 @ChopperApi()
 abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
-  static AppWeather getInstance(ChopperClient client) => _$AppWeather(client);
+  static AppWeather getInstance() => _$AppWeather();
 
   @Get(path: "/weather?appid=d37af98b5012e1570b59393e3943afd8")
   @override
