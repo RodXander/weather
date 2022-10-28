@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weather_description.freezed.dart';
+part 'weather_description.g.dart';
 
 @freezed
 class WeatherDescription with _$WeatherDescription {
@@ -10,4 +11,7 @@ class WeatherDescription with _$WeatherDescription {
     @Default("") String description,
     @Default("") String icon,
   }) = _WeatherDescription;
+
+  factory WeatherDescription.fromJson(Map<String, dynamic> map) =>
+      _$WeatherDescriptionFromJson(map);
 }

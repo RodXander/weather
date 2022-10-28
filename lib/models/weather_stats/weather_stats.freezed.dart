@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+WeatherStats _$WeatherStatsFromJson(Map<String, dynamic> json) {
+  return _WeatherStats.fromJson(json);
+}
+
 /// @nodoc
 mixin _$WeatherStats {
   double get temp => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$WeatherStats {
   double get seaLevel => throw _privateConstructorUsedError;
   double get grndLevel => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeatherStatsCopyWith<WeatherStats> get copyWith =>
       throw _privateConstructorUsedError;
@@ -183,7 +188,7 @@ class __$$_WeatherStatsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_WeatherStats implements _WeatherStats {
   const _$_WeatherStats(
       {this.temp = 0,
@@ -194,6 +199,9 @@ class _$_WeatherStats implements _WeatherStats {
       this.humidity = 0,
       this.seaLevel = 0,
       this.grndLevel = 0});
+
+  factory _$_WeatherStats.fromJson(Map<String, dynamic> json) =>
+      _$$_WeatherStatsFromJson(json);
 
   @override
   @JsonKey()
@@ -245,6 +253,7 @@ class _$_WeatherStats implements _WeatherStats {
                 other.grndLevel == grndLevel));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, temp, feelsLike, tempMin,
       tempMax, pressure, humidity, seaLevel, grndLevel);
@@ -254,6 +263,13 @@ class _$_WeatherStats implements _WeatherStats {
   @pragma('vm:prefer-inline')
   _$$_WeatherStatsCopyWith<_$_WeatherStats> get copyWith =>
       __$$_WeatherStatsCopyWithImpl<_$_WeatherStats>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeatherStatsToJson(
+      this,
+    );
+  }
 }
 
 abstract class _WeatherStats implements WeatherStats {
@@ -266,6 +282,9 @@ abstract class _WeatherStats implements WeatherStats {
       final double humidity,
       final double seaLevel,
       final double grndLevel}) = _$_WeatherStats;
+
+  factory _WeatherStats.fromJson(Map<String, dynamic> json) =
+      _$_WeatherStats.fromJson;
 
   @override
   double get temp;

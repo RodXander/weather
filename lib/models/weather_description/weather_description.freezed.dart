@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+WeatherDescription _$WeatherDescriptionFromJson(Map<String, dynamic> json) {
+  return _WeatherDescription.fromJson(json);
+}
+
 /// @nodoc
 mixin _$WeatherDescription {
   int get id => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$WeatherDescription {
   String get description => throw _privateConstructorUsedError;
   String get icon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeatherDescriptionCopyWith<WeatherDescription> get copyWith =>
       throw _privateConstructorUsedError;
@@ -123,10 +128,13 @@ class __$$_WeatherDescriptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_WeatherDescription implements _WeatherDescription {
   const _$_WeatherDescription(
       {this.id = 0, this.main = "", this.description = "", this.icon = ""});
+
+  factory _$_WeatherDescription.fromJson(Map<String, dynamic> json) =>
+      _$$_WeatherDescriptionFromJson(json);
 
   @override
   @JsonKey()
@@ -158,6 +166,7 @@ class _$_WeatherDescription implements _WeatherDescription {
             (identical(other.icon, icon) || other.icon == icon));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, main, description, icon);
 
@@ -167,6 +176,13 @@ class _$_WeatherDescription implements _WeatherDescription {
   _$$_WeatherDescriptionCopyWith<_$_WeatherDescription> get copyWith =>
       __$$_WeatherDescriptionCopyWithImpl<_$_WeatherDescription>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeatherDescriptionToJson(
+      this,
+    );
+  }
 }
 
 abstract class _WeatherDescription implements WeatherDescription {
@@ -175,6 +191,9 @@ abstract class _WeatherDescription implements WeatherDescription {
       final String main,
       final String description,
       final String icon}) = _$_WeatherDescription;
+
+  factory _WeatherDescription.fromJson(Map<String, dynamic> json) =
+      _$_WeatherDescription.fromJson;
 
   @override
   int get id;

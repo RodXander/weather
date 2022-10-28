@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chopper/chopper.dart';
 import 'package:weather/data/providers/interfaces/app_weather_abstract.dart';
 import 'package:weather/models/forecast_weather/forecast_weather.dart';
@@ -14,13 +16,12 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
   Future<Weather> getCurrentWeather(
     double lat,
     double lon,
-  ) async {
-    var response = await _getCurrentWeather(lat, lon);
-    return Weather();
-  }
+  ) async =>
+      Weather.fromJson(
+          json.decode((await _getCurrentWeather(lat, lon)).body ?? ""));
 
   @Get(path: "/weather?appid=$appId")
-  Future<Response<Weather>> _getCurrentWeather(
+  Future<Response<String>> _getCurrentWeather(
     @Query() double lat,
     @Query() double lon,
   );
@@ -29,13 +30,12 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
   Future<ForecastWeather> getForecastWeather(
     double lat,
     double lon,
-  ) async {
-    var response = await _getForecastWeather(lat, lon);
-    return ForecastWeather();
-  }
+  ) async =>
+      ForecastWeather.fromJson(
+          json.decode((await _getForecastWeather(lat, lon)).body ?? ""));
 
   @Get(path: "/forecast?appid=$appId")
-  Future<Response<ForecastWeather>> _getForecastWeather(
+  Future<Response<String>> _getForecastWeather(
     @Query() double lat,
     @Query() double lon,
   );

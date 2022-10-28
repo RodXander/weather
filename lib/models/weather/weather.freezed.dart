@@ -14,11 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Weather _$WeatherFromJson(Map<String, dynamic> json) {
+  return _Weather.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Weather {
   List<WeatherDescription> get weather => throw _privateConstructorUsedError;
   WeatherStats get main => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
 }
@@ -110,12 +115,15 @@ class __$$_WeatherCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Weather implements _Weather {
   const _$_Weather(
       {final List<WeatherDescription> weather = const [],
       this.main = const WeatherStats()})
       : _weather = weather;
+
+  factory _$_Weather.fromJson(Map<String, dynamic> json) =>
+      _$$_WeatherFromJson(json);
 
   final List<WeatherDescription> _weather;
   @override
@@ -143,6 +151,7 @@ class _$_Weather implements _Weather {
             (identical(other.main, main) || other.main == main));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_weather), main);
@@ -152,12 +161,21 @@ class _$_Weather implements _Weather {
   @pragma('vm:prefer-inline')
   _$$_WeatherCopyWith<_$_Weather> get copyWith =>
       __$$_WeatherCopyWithImpl<_$_Weather>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WeatherToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Weather implements Weather {
   const factory _Weather(
       {final List<WeatherDescription> weather,
       final WeatherStats main}) = _$_Weather;
+
+  factory _Weather.fromJson(Map<String, dynamic> json) = _$_Weather.fromJson;
 
   @override
   List<WeatherDescription> get weather;

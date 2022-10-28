@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weather_stats.freezed.dart';
+part 'weather_stats.g.dart';
 
 @freezed
 class WeatherStats with _$WeatherStats {
@@ -14,4 +15,7 @@ class WeatherStats with _$WeatherStats {
     @Default(0) double seaLevel,
     @Default(0) double grndLevel,
   }) = _WeatherStats;
+
+  factory WeatherStats.fromJson(Map<String, dynamic> map) =>
+      _$WeatherStatsFromJson(map);
 }
