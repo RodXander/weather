@@ -9,6 +9,7 @@ class SearchBar extends StatelessWidget {
     this.onSubmitted,
     this.hintText,
     this.readOnly = false,
+    this.enableSuffixIcon = true,
   }) : super(key: key);
 
   final FocusNode? focusNode;
@@ -16,6 +17,7 @@ class SearchBar extends StatelessWidget {
   final Function(String)? onSubmitted;
   final String? hintText;
   final bool readOnly;
+  final bool enableSuffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +40,9 @@ class SearchBar extends StatelessWidget {
                 .textTheme
                 .headline4
                 ?.copyWith(color: Colors.white54),
-            suffixIcon: const Icon(Icons.search, size: 40),
-            suffixIconColor: Colors.white54,
+            suffixIcon:
+                enableSuffixIcon ? const Icon(Icons.search, size: 40) : null,
+            suffixIconColor: enableSuffixIcon ? Colors.white54 : null,
           ),
           textInputAction: TextInputAction.search,
         ),

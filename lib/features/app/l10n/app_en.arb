@@ -16,5 +16,8 @@
   "@asc": {},
 
   "des": "des",
-  "@des": {}
+  "@des": {},
+
+  "searchHint": "Type a place and press Enter",
+  "@searchHint": {}
 }

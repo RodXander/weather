@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:weather/features/search/bloc/search_bloc.dart';
 import 'package:weather/features/search/bloc/search_event.dart';
 import 'package:weather/features/search/bloc/search_state.dart';
@@ -67,6 +68,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                             child: SearchBar(
                               focusNode: textFieldFocusNode,
+                              enableSuffixIcon: false,
+                              hintText: AppLocalizations.of(context).searchHint,
                               onSubmitted: (search) => searchBloc.add(
                                   SearchEventSearchUpdated(search: search)),
                             ),
