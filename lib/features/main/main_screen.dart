@@ -60,8 +60,13 @@ class _MainScreenState extends State<MainScreen> {
                         child: SearchBar(
                           readOnly: true,
                           hintText: state.location.name,
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(SearchScreen.routeName),
+                          onTap: () async {
+                            var result = await Navigator.of(context)
+                                .pushNamed(SearchScreen.routeName);
+                            if (result is bool && result) {
+                              mainBloc.add(const MainEventLocationUpdated());
+                            }
+                          },
                         ),
                       ),
                       if (state.state == MainStateEnum.loading)

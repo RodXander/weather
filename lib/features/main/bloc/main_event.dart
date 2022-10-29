@@ -7,6 +7,5 @@ class MainEvent with _$MainEvent {
   const factory MainEvent.loading() = MainEventLoading;
   const factory MainEvent.changedForecastOrder({required bool ascending}) =
       MainEventChangedForecastOrder;
-  const factory MainEvent.searchUpdated({required String search}) =
-      MainEventSearchUpdated;
+  const factory MainEvent.locationUpdated() = MainEventLocationUpdated;
 }

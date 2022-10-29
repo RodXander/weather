@@ -97,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     onPressed: () {
                                       searchBloc.add(SearchEventLocationUpdated(
                                           location: location));
-                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop(true);
                                     },
                                   )
                               ],

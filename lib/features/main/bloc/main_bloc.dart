@@ -14,8 +14,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<MainEventLoading>((event, emit) => _onMainEventLoading(emit));
     on<MainEventChangedForecastOrder>((event, emit) =>
         _onMainEventChangedForecastOrder(emit, event.ascending));
-    on<MainEventSearchUpdated>(
-      (event, emit) => _onMainEventSearchUpdated(emit, event.search),
+    on<MainEventLocationUpdated>(
+      (event, emit) => _onMainEventLocationUpdated(emit),
       transformer: droppable(),
     );
   }
@@ -39,7 +39,11 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     ));
   }
 
-  void _onMainEventSearchUpdated(Emitter emit, String search) {
-    int i = 0;
+  void _onMainEventLocationUpdated(Emitter emit) {
+    emit(state.copyWith(
+      state: MainStateEnum.loading,
+      location: GetIt.I<AppRepository>().getCurrentLocation(),
+    ));
+    add(const MainEventLoading());
   }
 }
