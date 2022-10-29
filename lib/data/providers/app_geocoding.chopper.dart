@@ -19,7 +19,7 @@ class _$AppGeocoding extends AppGeocoding {
   @override
   Future<Response<String>> _getGeocoding(String q) {
     final String $url =
-        'http://api.openweathermap.org/geo/1.0/direct?appid=d37af98b5012e1570b59393e3943afd8';
+        'http://api.openweathermap.org/geo/1.0/direct?&appid=d37af98b5012e1570b59393e3943afd8';
     final Map<String, dynamic> $params = <String, dynamic>{'q': q};
     final Request $request = Request(
       'GET',

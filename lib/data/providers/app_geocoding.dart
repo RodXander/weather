@@ -23,8 +23,7 @@ abstract class AppGeocoding extends ChopperService
         .toList();
   }
 
-  @Get(
-      path: "http://api.openweathermap.org/geo/1.0/direct?limit=5&appid=$appId")
+  @Get(path: "http://api.openweathermap.org/geo/1.0/direct?&appid=$appId")
   Future<Response<String>> _getGeocoding(
     @Query() String q,
   );

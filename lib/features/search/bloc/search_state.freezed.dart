@@ -15,13 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SearchState {}
+mixin _$SearchState {
+  dynamic get isLoading => throw _privateConstructorUsedError;
+  List<Location> get locations => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SearchStateCopyWith<SearchState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
+  @useResult
+  $Res call({dynamic isLoading, List<Location> locations});
 }
 
 /// @nodoc
@@ -33,13 +42,35 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? locations = null,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      locations: null == locations
+          ? _value.locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Location>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_SearchStateCopyWith<$Res> {
+abstract class _$$_SearchStateCopyWith<$Res>
+    implements $SearchStateCopyWith<$Res> {
   factory _$$_SearchStateCopyWith(
           _$_SearchState value, $Res Function(_$_SearchState) then) =
       __$$_SearchStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({dynamic isLoading, List<Location> locations});
 }
 
 /// @nodoc
@@ -49,28 +80,80 @@ class __$$_SearchStateCopyWithImpl<$Res>
   __$$_SearchStateCopyWithImpl(
       _$_SearchState _value, $Res Function(_$_SearchState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? locations = null,
+  }) {
+    return _then(_$_SearchState(
+      isLoading: null == isLoading ? _value.isLoading : isLoading,
+      locations: null == locations
+          ? _value._locations
+          : locations // ignore: cast_nullable_to_non_nullable
+              as List<Location>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_SearchState implements _SearchState {
-  _$_SearchState();
+  const _$_SearchState(
+      {this.isLoading = false, final List<Location> locations = const []})
+      : _locations = locations;
+
+  @override
+  @JsonKey()
+  final dynamic isLoading;
+  final List<Location> _locations;
+  @override
+  @JsonKey()
+  List<Location> get locations {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_locations);
+  }
 
   @override
   String toString() {
-    return 'SearchState()';
+    return 'SearchState(isLoading: $isLoading, locations: $locations)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SearchState);
+        (other.runtimeType == runtimeType &&
+            other is _$_SearchState &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other._locations, _locations));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(_locations));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SearchStateCopyWith<_$_SearchState> get copyWith =>
+      __$$_SearchStateCopyWithImpl<_$_SearchState>(this, _$identity);
 }
 
 abstract class _SearchState implements SearchState {
-  factory _SearchState() = _$_SearchState;
+  const factory _SearchState(
+      {final dynamic isLoading,
+      final List<Location> locations}) = _$_SearchState;
+
+  @override
+  dynamic get isLoading;
+  @override
+  List<Location> get locations;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SearchStateCopyWith<_$_SearchState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

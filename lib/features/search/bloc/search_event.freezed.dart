@@ -16,42 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchEvent {
-  String get search => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String search) searchUpdated,
+    required TResult Function(Location location) locationUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String search)? searchUpdated,
+    TResult? Function(Location location)? locationUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String search)? searchUpdated,
+    TResult Function(Location location)? locationUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchEventSearchUpdated value) searchUpdated,
+    required TResult Function(SearchEventLocationUpdated value) locationUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult? Function(SearchEventLocationUpdated value)? locationUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult Function(SearchEventLocationUpdated value)? locationUpdated,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $SearchEventCopyWith<SearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,8 +61,6 @@ abstract class $SearchEventCopyWith<$Res> {
   factory $SearchEventCopyWith(
           SearchEvent value, $Res Function(SearchEvent) then) =
       _$SearchEventCopyWithImpl<$Res, SearchEvent>;
-  @useResult
-  $Res call({String search});
 }
 
 /// @nodoc
@@ -73,28 +72,13 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? search = null,
-  }) {
-    return _then(_value.copyWith(
-      search: null == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$SearchEventSearchUpdatedCopyWith<$Res>
-    implements $SearchEventCopyWith<$Res> {
+abstract class _$$SearchEventSearchUpdatedCopyWith<$Res> {
   factory _$$SearchEventSearchUpdatedCopyWith(_$SearchEventSearchUpdated value,
           $Res Function(_$SearchEventSearchUpdated) then) =
       __$$SearchEventSearchUpdatedCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({String search});
 }
@@ -157,6 +141,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String search) searchUpdated,
+    required TResult Function(Location location) locationUpdated,
   }) {
     return searchUpdated(search);
   }
@@ -165,6 +150,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String search)? searchUpdated,
+    TResult? Function(Location location)? locationUpdated,
   }) {
     return searchUpdated?.call(search);
   }
@@ -173,6 +159,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String search)? searchUpdated,
+    TResult Function(Location location)? locationUpdated,
     required TResult orElse(),
   }) {
     if (searchUpdated != null) {
@@ -185,6 +172,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(SearchEventSearchUpdated value) searchUpdated,
+    required TResult Function(SearchEventLocationUpdated value) locationUpdated,
   }) {
     return searchUpdated(this);
   }
@@ -193,6 +181,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult? Function(SearchEventLocationUpdated value)? locationUpdated,
   }) {
     return searchUpdated?.call(this);
   }
@@ -201,6 +190,7 @@ class _$SearchEventSearchUpdated implements SearchEventSearchUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult Function(SearchEventLocationUpdated value)? locationUpdated,
     required TResult orElse(),
   }) {
     if (searchUpdated != null) {
@@ -214,10 +204,156 @@ abstract class SearchEventSearchUpdated implements SearchEvent {
   const factory SearchEventSearchUpdated({required final String search}) =
       _$SearchEventSearchUpdated;
 
-  @override
   String get search;
-  @override
   @JsonKey(ignore: true)
   _$$SearchEventSearchUpdatedCopyWith<_$SearchEventSearchUpdated>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SearchEventLocationUpdatedCopyWith<$Res> {
+  factory _$$SearchEventLocationUpdatedCopyWith(
+          _$SearchEventLocationUpdated value,
+          $Res Function(_$SearchEventLocationUpdated) then) =
+      __$$SearchEventLocationUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Location location});
+
+  $LocationCopyWith<$Res> get location;
+}
+
+/// @nodoc
+class __$$SearchEventLocationUpdatedCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SearchEventLocationUpdated>
+    implements _$$SearchEventLocationUpdatedCopyWith<$Res> {
+  __$$SearchEventLocationUpdatedCopyWithImpl(
+      _$SearchEventLocationUpdated _value,
+      $Res Function(_$SearchEventLocationUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+  }) {
+    return _then(_$SearchEventLocationUpdated(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocationCopyWith<$Res> get location {
+    return $LocationCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SearchEventLocationUpdated implements SearchEventLocationUpdated {
+  const _$SearchEventLocationUpdated({required this.location});
+
+  @override
+  final Location location;
+
+  @override
+  String toString() {
+    return 'SearchEvent.locationUpdated(location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchEventLocationUpdated &&
+            (identical(other.location, location) ||
+                other.location == location));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, location);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchEventLocationUpdatedCopyWith<_$SearchEventLocationUpdated>
+      get copyWith => __$$SearchEventLocationUpdatedCopyWithImpl<
+          _$SearchEventLocationUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String search) searchUpdated,
+    required TResult Function(Location location) locationUpdated,
+  }) {
+    return locationUpdated(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String search)? searchUpdated,
+    TResult? Function(Location location)? locationUpdated,
+  }) {
+    return locationUpdated?.call(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String search)? searchUpdated,
+    TResult Function(Location location)? locationUpdated,
+    required TResult orElse(),
+  }) {
+    if (locationUpdated != null) {
+      return locationUpdated(location);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SearchEventSearchUpdated value) searchUpdated,
+    required TResult Function(SearchEventLocationUpdated value) locationUpdated,
+  }) {
+    return locationUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult? Function(SearchEventLocationUpdated value)? locationUpdated,
+  }) {
+    return locationUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SearchEventSearchUpdated value)? searchUpdated,
+    TResult Function(SearchEventLocationUpdated value)? locationUpdated,
+    required TResult orElse(),
+  }) {
+    if (locationUpdated != null) {
+      return locationUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SearchEventLocationUpdated implements SearchEvent {
+  const factory SearchEventLocationUpdated({required final Location location}) =
+      _$SearchEventLocationUpdated;
+
+  Location get location;
+  @JsonKey(ignore: true)
+  _$$SearchEventLocationUpdatedCopyWith<_$SearchEventLocationUpdated>
       get copyWith => throw _privateConstructorUsedError;
 }

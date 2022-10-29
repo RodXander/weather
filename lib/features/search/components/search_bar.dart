@@ -6,14 +6,14 @@ class SearchBar extends StatelessWidget {
     Key? key,
     this.focusNode,
     this.onTap,
-    this.onChanged,
+    this.onSubmitted,
     this.hintText,
     this.readOnly = false,
   }) : super(key: key);
 
   final FocusNode? focusNode;
   final Function()? onTap;
-  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
   final String? hintText;
   final bool readOnly;
 
@@ -27,7 +27,7 @@ class SearchBar extends StatelessWidget {
           readOnly: readOnly,
           focusNode: focusNode,
           style: Theme.of(context).textTheme.headline2,
-          onChanged: onChanged,
+          onSubmitted: onSubmitted,
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent)),

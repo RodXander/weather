@@ -5,6 +5,7 @@ import 'package:weather/features/search/bloc/search_bloc.dart';
 import 'package:weather/features/search/bloc/search_event.dart';
 import 'package:weather/features/search/bloc/search_state.dart';
 import 'package:weather/features/search/components/search_bar.dart';
+import 'package:weather/features/search/components/search_item.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search';
@@ -66,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             },
                             child: SearchBar(
                               focusNode: textFieldFocusNode,
-                              onChanged: (search) => searchBloc.add(
+                              onSubmitted: (search) => searchBloc.add(
                                   SearchEventSearchUpdated(search: search)),
                             ),
                           ),
@@ -74,7 +75,36 @@ class _SearchScreenState extends State<SearchScreen> {
                       ],
                     ),
                     SingleChildScrollView(
-                      child: Container(),
+                      child: BlocBuilder<SearchBloc, SearchState>(
+                        bloc: searchBloc,
+                        buildWhen: (previous, current) =>
+                            previous.isLoading != current.isLoading,
+                        builder: (_, state) {
+                          if (state.isLoading) {
+                            return const Padding(
+                              padding: EdgeInsets.all(32),
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(height: 16),
+                                for (var location in state.locations)
+                                  SearchItem(
+                                    title: location.name,
+                                    subtitle: location.country!,
+                                    onPressed: () {
+                                      searchBloc.add(SearchEventLocationUpdated(
+                                          location: location));
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                              ],
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ],
                 ),

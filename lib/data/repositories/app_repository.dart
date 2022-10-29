@@ -37,9 +37,16 @@ class AppRepository {
     return Location(
       name:
           _appPreferences!.getString(AppPreferences.locationName) ?? "Calgary",
-      lat: _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04,
-      lon: _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07,
+      lat: _appPreferences!.getDouble(AppPreferences.lat) ?? 51.0460954,
+      lon: _appPreferences!.getDouble(AppPreferences.lon) ?? -114.065465,
     );
+  }
+
+  Future setCurrentLocation(Location location) async {
+    await _appPreferences!
+        .setString(AppPreferences.locationName, location.name);
+    await _appPreferences!.setDouble(AppPreferences.lat, location.lat);
+    await _appPreferences!.setDouble(AppPreferences.lon, location.lon);
   }
 
   String getWeatherIcon(String id) =>
