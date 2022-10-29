@@ -14,7 +14,7 @@ class WeatherTitle extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Text(
         title,
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headline6,
       ),
     );
   }

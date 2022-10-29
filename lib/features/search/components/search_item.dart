@@ -22,14 +22,14 @@ class SearchItem extends StatelessWidget {
           children: [
             Text(
               title,
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 4),
             Text(
               subtitle,
               style: Theme.of(context)
                   .textTheme
-                  .headline3
+                  .headline6
                   ?.copyWith(fontWeight: FontWeight.w100),
             ),
           ],

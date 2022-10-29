@@ -43,7 +43,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       children: [
                         IconButton(
                           padding: EdgeInsets.zero,
-                          iconSize: 48,
+                          iconSize: 40,
                           splashRadius: 40,
                           icon: const Icon(
                             Icons.arrow_back,

@@ -30,14 +30,14 @@ class WeatherCard extends StatelessWidget {
               children: [
                 Text(
                   date,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.subtitle2,
                 ),
                 const SizedBox(width: 8),
                 Text(
                   time,
                   style: Theme.of(context)
                       .textTheme
-                      .headline6
+                      .subtitle2
                       ?.copyWith(fontWeight: FontWeight.w200),
                 ),
               ],
@@ -53,7 +53,7 @@ class WeatherCard extends StatelessWidget {
                 Dominant(
                   child: Text(
                     "${weather.main.temp}°",
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
               ],
@@ -64,7 +64,7 @@ class WeatherCard extends StatelessWidget {
                 children: [
                   Text(
                     "${weather.weather.firstOrNull?.main}. ${weather.main.feelsLike != 0 ? "Feels like ${weather.main.feelsLike}°" : ""}",
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.subtitle2,
                   ),
                 ],
               ),

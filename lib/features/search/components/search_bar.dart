@@ -21,12 +21,12 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+        padding: const EdgeInsets.only(left: 8, right: 8, top: 0, bottom: 0),
         child: TextField(
           onTap: onTap,
           readOnly: readOnly,
           focusNode: focusNode,
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context).textTheme.headline4,
           onSubmitted: onSubmitted,
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
@@ -36,9 +36,9 @@ class SearchBar extends StatelessWidget {
             hintText: hintText,
             hintStyle: Theme.of(context)
                 .textTheme
-                .headline2
+                .headline4
                 ?.copyWith(color: Colors.white54),
-            suffixIcon: const Icon(Icons.search, size: 48),
+            suffixIcon: const Icon(Icons.search, size: 40),
             suffixIconColor: Colors.white54,
           ),
           textInputAction: TextInputAction.search,
