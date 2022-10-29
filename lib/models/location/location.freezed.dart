@@ -14,11 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Location _$LocationFromJson(Map<String, dynamic> json) {
+  return _Location.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Location {
   String get name => throw _privateConstructorUsedError;
-  Coordinate get coordinates => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
+  double get lat => throw _privateConstructorUsedError;
+  double get lon => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LocationCopyWith<Location> get copyWith =>
       throw _privateConstructorUsedError;
@@ -29,9 +36,7 @@ abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
       _$LocationCopyWithImpl<$Res, Location>;
   @useResult
-  $Res call({String name, Coordinate coordinates});
-
-  $CoordinateCopyWith<$Res> get coordinates;
+  $Res call({String name, String? country, double lat, double lon});
 }
 
 /// @nodoc
@@ -48,26 +53,28 @@ class _$LocationCopyWithImpl<$Res, $Val extends Location>
   @override
   $Res call({
     Object? name = null,
-    Object? coordinates = null,
+    Object? country = freezed,
+    Object? lat = null,
+    Object? lon = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      coordinates: null == coordinates
-          ? _value.coordinates
-          : coordinates // ignore: cast_nullable_to_non_nullable
-              as Coordinate,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lon: null == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CoordinateCopyWith<$Res> get coordinates {
-    return $CoordinateCopyWith<$Res>(_value.coordinates, (value) {
-      return _then(_value.copyWith(coordinates: value) as $Val);
-    });
   }
 }
 
@@ -78,10 +85,7 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
       __$$_LocationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Coordinate coordinates});
-
-  @override
-  $CoordinateCopyWith<$Res> get coordinates;
+  $Res call({String name, String? country, double lat, double lon});
 }
 
 /// @nodoc
@@ -96,34 +100,52 @@ class __$$_LocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? coordinates = null,
+    Object? country = freezed,
+    Object? lat = null,
+    Object? lon = null,
   }) {
     return _then(_$_Location(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      coordinates: null == coordinates
-          ? _value.coordinates
-          : coordinates // ignore: cast_nullable_to_non_nullable
-              as Coordinate,
+      country: freezed == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lon: null == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Location implements _Location {
-  const _$_Location({required this.name, required this.coordinates});
+  const _$_Location(
+      {required this.name, this.country, required this.lat, required this.lon});
+
+  factory _$_Location.fromJson(Map<String, dynamic> json) =>
+      _$$_LocationFromJson(json);
 
   @override
   final String name;
   @override
-  final Coordinate coordinates;
+  final String? country;
+  @override
+  final double lat;
+  @override
+  final double lon;
 
   @override
   String toString() {
-    return 'Location(name: $name, coordinates: $coordinates)';
+    return 'Location(name: $name, country: $country, lat: $lat, lon: $lon)';
   }
 
   @override
@@ -132,29 +154,46 @@ class _$_Location implements _Location {
         (other.runtimeType == runtimeType &&
             other is _$_Location &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.coordinates, coordinates) ||
-                other.coordinates == coordinates));
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, coordinates);
+  int get hashCode => Object.hash(runtimeType, name, country, lat, lon);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_LocationCopyWith<_$_Location> get copyWith =>
       __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LocationToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Location implements Location {
   const factory _Location(
       {required final String name,
-      required final Coordinate coordinates}) = _$_Location;
+      final String? country,
+      required final double lat,
+      required final double lon}) = _$_Location;
+
+  factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
   String get name;
   @override
-  Coordinate get coordinates;
+  String? get country;
+  @override
+  double get lat;
+  @override
+  double get lon;
   @override
   @JsonKey(ignore: true)
   _$$_LocationCopyWith<_$_Location> get copyWith =>

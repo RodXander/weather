@@ -1,10 +1,10 @@
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:weather/data/providers/app_geocoding.dart';
 import 'package:weather/data/providers/app_preferences.dart';
 import 'package:weather/data/providers/app_weather.dart';
 import 'package:weather/data/providers/interfaces/app_preferences_abstract.dart';
-import 'package:weather/models/coordinate/coordinate.dart';
 import 'package:weather/models/forecast_weather/forecast_weather.dart';
 import 'package:weather/models/location/location.dart';
 import 'package:weather/models/weather/weather.dart';
@@ -24,40 +24,42 @@ class AppRepository {
       baseUrl: "https://api.openweathermap.org",
       services: [
         AppWeather.getInstance(),
+        AppGeocoding.getInstance(),
       ],
     );
     return _appRepository;
   }
 
+  Future<List<Location>> getGeocoding(String name) async =>
+      await _chopperClient!.getService<AppGeocoding>().getGeocoding(name);
+
   Location getCurrentLocation() {
     return Location(
       name:
           _appPreferences!.getString(AppPreferences.locationName) ?? "Calgary",
-      coordinates: Coordinate(
-        lat: _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04,
-        lon: _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07,
-      ),
+      lat: _appPreferences!.getDouble(AppPreferences.lat) ?? 51.04,
+      lon: _appPreferences!.getDouble(AppPreferences.lon) ?? 114.07,
     );
   }
 
   String getWeatherIcon(String id) =>
       _chopperClient!.getService<AppWeather>().getWeatherIcon(id);
 
-  Future<Weather?> getCurrentWeather(Coordinate coordinate) async {
+  Future<Weather?> getCurrentWeather(double lat, double lon) async {
     try {
       return await _chopperClient!
           .getService<AppWeather>()
-          .getCurrentWeather(coordinate, "metric");
+          .getCurrentWeather(lat, lon, "metric");
     } catch (_) {
       return null;
     }
   }
 
-  Future<ForecastWeather?> getForecastWeather(Coordinate coordinate) async {
+  Future<ForecastWeather?> getForecastWeather(double lat, double lon) async {
     try {
       var fullForecast = await _chopperClient!
           .getService<AppWeather>()
-          .getForecastWeather(coordinate, "metric");
+          .getForecastWeather(lat, lon, "metric");
 
       var currentDate = DateUtils.dateOnly(DateTime.now());
       var forecast = <Weather>[];

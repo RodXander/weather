@@ -22,9 +22,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
   void _onMainEventLoading(Emitter emit) async {
     var weather = await GetIt.I<AppRepository>()
-        .getCurrentWeather(state.location.coordinates);
+        .getCurrentWeather(state.location.lat, state.location.lon);
     var forecast = await GetIt.I<AppRepository>()
-        .getForecastWeather(state.location.coordinates);
+        .getForecastWeather(state.location.lat, state.location.lon);
 
     emit(state.copyWith(
       state: MainStateEnum.loaded,

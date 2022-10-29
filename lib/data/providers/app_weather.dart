@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:weather/data/providers/interfaces/app_weather_abstract.dart';
-import 'package:weather/models/coordinate/coordinate.dart';
 import 'package:weather/models/forecast_weather/forecast_weather.dart';
 import 'package:weather/models/weather/weather.dart';
 
@@ -16,13 +15,12 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
 
   @override
   Future<Weather> getCurrentWeather(
-    Coordinate coordinates,
+    double lat,
+    double lon,
     String units,
   ) async =>
-      Weather.fromJson(json.decode(
-          (await _getCurrentWeather(coordinates.lat, coordinates.lon, units))
-                  .body ??
-              ""));
+      Weather.fromJson(
+          json.decode((await _getCurrentWeather(lat, lon, units)).body ?? ""));
 
   @Get(path: "/data/2.5/weather?appid=$appId")
   Future<Response<String>> _getCurrentWeather(
@@ -33,13 +31,12 @@ abstract class AppWeather extends ChopperService implements AppWeatherAbstract {
 
   @override
   Future<ForecastWeather> getForecastWeather(
-    Coordinate coordinates,
+    double lat,
+    double lon,
     String units,
   ) async =>
-      ForecastWeather.fromJson(json.decode(
-          (await _getForecastWeather(coordinates.lat, coordinates.lon, units))
-                  .body ??
-              ""));
+      ForecastWeather.fromJson(
+          json.decode((await _getForecastWeather(lat, lon, units)).body ?? ""));
 
   @Get(path: "/data/2.5/forecast?appid=$appId")
   Future<Response<String>> _getForecastWeather(
