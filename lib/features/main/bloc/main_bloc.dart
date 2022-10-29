@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weather/data/repositories/app_repository.dart';
 import 'package:weather/features/main/bloc/main_event.dart';
@@ -13,6 +14,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<MainEventLoading>((event, emit) => _onMainEventLoading(emit));
     on<MainEventChangedForecastOrder>((event, emit) =>
         _onMainEventChangedForecastOrder(emit, event.ascending));
+    on<MainEventSearchUpdated>(
+      (event, emit) => _onMainEventSearchUpdated(emit, event.search),
+      transformer: droppable(),
+    );
   }
 
   void _onMainEventLoading(Emitter emit) async {
@@ -28,9 +33,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     ));
   }
 
-  void _onMainEventChangedForecastOrder(Emitter emit, bool ascending) async {
+  void _onMainEventChangedForecastOrder(Emitter emit, bool ascending) {
     emit(state.copyWith(
       ascForecast: ascending,
     ));
+  }
+
+  void _onMainEventSearchUpdated(Emitter emit, String search) {
+    int i = 0;
   }
 }

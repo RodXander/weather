@@ -20,18 +20,21 @@ mixin _$MainEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(bool ascending) changedForecastOrder,
+    required TResult Function(String search) searchUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(bool ascending)? changedForecastOrder,
+    TResult? Function(String search)? searchUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(bool ascending)? changedForecastOrder,
+    TResult Function(String search)? searchUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,6 +43,7 @@ mixin _$MainEvent {
     required TResult Function(MainEventLoading value) loading,
     required TResult Function(MainEventChangedForecastOrder value)
         changedForecastOrder,
+    required TResult Function(MainEventSearchUpdated value) searchUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,12 +51,14 @@ mixin _$MainEvent {
     TResult? Function(MainEventLoading value)? loading,
     TResult? Function(MainEventChangedForecastOrder value)?
         changedForecastOrder,
+    TResult? Function(MainEventSearchUpdated value)? searchUpdated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MainEventLoading value)? loading,
     TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
+    TResult Function(MainEventSearchUpdated value)? searchUpdated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +121,7 @@ class _$MainEventLoading implements MainEventLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(bool ascending) changedForecastOrder,
+    required TResult Function(String search) searchUpdated,
   }) {
     return loading();
   }
@@ -124,6 +131,7 @@ class _$MainEventLoading implements MainEventLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(bool ascending)? changedForecastOrder,
+    TResult? Function(String search)? searchUpdated,
   }) {
     return loading?.call();
   }
@@ -133,6 +141,7 @@ class _$MainEventLoading implements MainEventLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(bool ascending)? changedForecastOrder,
+    TResult Function(String search)? searchUpdated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -147,6 +156,7 @@ class _$MainEventLoading implements MainEventLoading {
     required TResult Function(MainEventLoading value) loading,
     required TResult Function(MainEventChangedForecastOrder value)
         changedForecastOrder,
+    required TResult Function(MainEventSearchUpdated value) searchUpdated,
   }) {
     return loading(this);
   }
@@ -157,6 +167,7 @@ class _$MainEventLoading implements MainEventLoading {
     TResult? Function(MainEventLoading value)? loading,
     TResult? Function(MainEventChangedForecastOrder value)?
         changedForecastOrder,
+    TResult? Function(MainEventSearchUpdated value)? searchUpdated,
   }) {
     return loading?.call(this);
   }
@@ -166,6 +177,7 @@ class _$MainEventLoading implements MainEventLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MainEventLoading value)? loading,
     TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
+    TResult Function(MainEventSearchUpdated value)? searchUpdated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -249,6 +261,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(bool ascending) changedForecastOrder,
+    required TResult Function(String search) searchUpdated,
   }) {
     return changedForecastOrder(ascending);
   }
@@ -258,6 +271,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(bool ascending)? changedForecastOrder,
+    TResult? Function(String search)? searchUpdated,
   }) {
     return changedForecastOrder?.call(ascending);
   }
@@ -267,6 +281,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(bool ascending)? changedForecastOrder,
+    TResult Function(String search)? searchUpdated,
     required TResult orElse(),
   }) {
     if (changedForecastOrder != null) {
@@ -281,6 +296,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
     required TResult Function(MainEventLoading value) loading,
     required TResult Function(MainEventChangedForecastOrder value)
         changedForecastOrder,
+    required TResult Function(MainEventSearchUpdated value) searchUpdated,
   }) {
     return changedForecastOrder(this);
   }
@@ -291,6 +307,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
     TResult? Function(MainEventLoading value)? loading,
     TResult? Function(MainEventChangedForecastOrder value)?
         changedForecastOrder,
+    TResult? Function(MainEventSearchUpdated value)? searchUpdated,
   }) {
     return changedForecastOrder?.call(this);
   }
@@ -300,6 +317,7 @@ class _$MainEventChangedForecastOrder implements MainEventChangedForecastOrder {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(MainEventLoading value)? loading,
     TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
+    TResult Function(MainEventSearchUpdated value)? searchUpdated,
     required TResult orElse(),
   }) {
     if (changedForecastOrder != null) {
@@ -317,4 +335,147 @@ abstract class MainEventChangedForecastOrder implements MainEvent {
   @JsonKey(ignore: true)
   _$$MainEventChangedForecastOrderCopyWith<_$MainEventChangedForecastOrder>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MainEventSearchUpdatedCopyWith<$Res> {
+  factory _$$MainEventSearchUpdatedCopyWith(_$MainEventSearchUpdated value,
+          $Res Function(_$MainEventSearchUpdated) then) =
+      __$$MainEventSearchUpdatedCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String search});
+}
+
+/// @nodoc
+class __$$MainEventSearchUpdatedCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$MainEventSearchUpdated>
+    implements _$$MainEventSearchUpdatedCopyWith<$Res> {
+  __$$MainEventSearchUpdatedCopyWithImpl(_$MainEventSearchUpdated _value,
+      $Res Function(_$MainEventSearchUpdated) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? search = null,
+  }) {
+    return _then(_$MainEventSearchUpdated(
+      search: null == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MainEventSearchUpdated implements MainEventSearchUpdated {
+  const _$MainEventSearchUpdated({required this.search});
+
+  @override
+  final String search;
+
+  @override
+  String toString() {
+    return 'MainEvent.searchUpdated(search: $search)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainEventSearchUpdated &&
+            (identical(other.search, search) || other.search == search));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, search);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MainEventSearchUpdatedCopyWith<_$MainEventSearchUpdated> get copyWith =>
+      __$$MainEventSearchUpdatedCopyWithImpl<_$MainEventSearchUpdated>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(bool ascending) changedForecastOrder,
+    required TResult Function(String search) searchUpdated,
+  }) {
+    return searchUpdated(search);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(bool ascending)? changedForecastOrder,
+    TResult? Function(String search)? searchUpdated,
+  }) {
+    return searchUpdated?.call(search);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(bool ascending)? changedForecastOrder,
+    TResult Function(String search)? searchUpdated,
+    required TResult orElse(),
+  }) {
+    if (searchUpdated != null) {
+      return searchUpdated(search);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(MainEventLoading value) loading,
+    required TResult Function(MainEventChangedForecastOrder value)
+        changedForecastOrder,
+    required TResult Function(MainEventSearchUpdated value) searchUpdated,
+  }) {
+    return searchUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(MainEventLoading value)? loading,
+    TResult? Function(MainEventChangedForecastOrder value)?
+        changedForecastOrder,
+    TResult? Function(MainEventSearchUpdated value)? searchUpdated,
+  }) {
+    return searchUpdated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MainEventLoading value)? loading,
+    TResult Function(MainEventChangedForecastOrder value)? changedForecastOrder,
+    TResult Function(MainEventSearchUpdated value)? searchUpdated,
+    required TResult orElse(),
+  }) {
+    if (searchUpdated != null) {
+      return searchUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MainEventSearchUpdated implements MainEvent {
+  const factory MainEventSearchUpdated({required final String search}) =
+      _$MainEventSearchUpdated;
+
+  String get search;
+  @JsonKey(ignore: true)
+  _$$MainEventSearchUpdatedCopyWith<_$MainEventSearchUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
